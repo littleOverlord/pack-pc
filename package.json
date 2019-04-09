@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-packager . 屠龙 --win --out ../pack-pc/dist --arch=x64 --app-version=0.18.1204 --electron-version=3.0.10 --overwrite"
+    "packagerWin64": "electron-packager . 屠龙 --win --out ../pack-pc/dist --platform=win32 --arch=x64 --app-version=0.18.1204 --overwrite --asar",
+    "packagerWin32": "electron-packager . 屠龙 --win --out ../pack-pc/dist --platform=win32 --arch=ia32 --app-version=0.18.1204 --overwrite --asar",
+    "packagerMAC": "electron-packager . 屠龙 --win --out ../pack-pc/dist --platform=darwin --arch=x64 --app-version=0.18.1204 --overwrite"
   },
   "repository": {
     "type": "git",
