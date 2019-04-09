@@ -1,0 +1,29 @@
+{
+  "name": "pack-pc",
+  "version": "0.18.1204",
+  "description": "pack pc app",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-packager . 屠龙 --win --out ../pack-pc/dist --arch=x64 --app-version=0.18.1204 --electron-version=3.0.10 --overwrite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/littleOverlord/pack-pc.git"
+  },
+  "keywords": [
+    "pc app"
+  ],
+  "author": "tdd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/littleOverlord/pack-pc/issues"
+  },
+  "homepage": "https://github.com/littleOverlord/pack-pc#readme",
+  "devDependencies": {
+    "electron-packager": "^12.2.0"
+  },
+  "dependencies": {
+    "electron": "^3.0.10"
+  }
+}
