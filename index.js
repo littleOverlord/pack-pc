@@ -8,14 +8,15 @@ const { app, BrowserWindow, dialog, ipcMain } = require('electron')
 // 垃圾回收的时候，window对象将会自动的关闭
 let wins = [],
   cfg = {
-    "debug": false
+    "debug": true,
+    "resizable": false
   };
 //打开新窗口
 const createWindow = (index,dir) => {
   
   // 创建浏览器窗口。
   const win = new BrowserWindow({ width: 750, height: 1334 , id: dir?"child":"main"})
-
+  // win.setResizable(cfg.resizable);
   // 然后加载应用的 index.html。
   win.loadFile(index)
 
