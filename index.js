@@ -1,22 +1,23 @@
 'use strict';
 const fs = require('fs');
 
-const { app, BrowserWindow, dialog, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 /****************** 本地 ******************/
 
 // 保持对window对象的全局引用，如果不这么做的话，当JavaScript对象被
 // 垃圾回收的时候，window对象将会自动的关闭
 let wins = [],
   cfg = {
-    "debug": true,
-    "resizable": false
+    debug: true,
+    width: 1334,
+    height: 750
   };
 //打开新窗口
 const createWindow = (index,dir) => {
   
   // 创建浏览器窗口。
-  const win = new BrowserWindow({ width: 750, height: 1334 , id: dir?"child":"main"})
-  // win.setResizable(cfg.resizable);
+  const win = new BrowserWindow({ width: cfg.width, height: cfg.height, resizable: cfg.debug?true:false})
+
   // 然后加载应用的 index.html。
   win.loadFile(index)
 
@@ -38,22 +39,6 @@ const createWindow = (index,dir) => {
   })
   wins.push(win);
 }
-const createWindows = (arrs) => {
-  if(wins.length == 1){
-    console.log("close main window");
-    //关闭主窗体
-    wins[0].hide();
-  }
-  for(let i = 0, len = arrs.length; i < len; i++){
-    createWindow("./src/child.html",arrs[i]);
-    projects.data.splice(0,0,arrs[i]);
-  }
-  if(projects.data.length > 10){
-    projects.data.length = 10;
-  }
-  writeProjects();
-  
-}
 //响应渲染进程请求
 const responseRequest = {
   getCfg : (event)=>{
@@ -66,7 +51,7 @@ const responseRequest = {
 // 创建浏览器窗口时，调用这个函数。
 // 部分 API 在 ready 事件触发后才能使用。
 app.on('ready', function(){
-  createWindow("./src/pc.html");
+  createWindow("./dst/boot/index_a.html");
   
 })
 
@@ -83,7 +68,7 @@ app.on('activate', () => {
   // 在macOS上，当单击dock图标并且没有其他窗口打开时，
   // 通常在应用程序中重新创建一个窗口。
   if (wins.length === 0) {
-    createWindow("./src/pc.html")
+    createWindow("./dst/boot/index_a.html")
   }
 })
 

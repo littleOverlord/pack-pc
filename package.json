@@ -1,13 +1,41 @@
 {
-  "name": "pack-pc",
-  "version": "0.18.1204",
+  "name": "srs",
+  "version": "0.19.0424",
   "description": "pack pc app",
   "main": "index.js",
+  "build": {
+    "productName":"兽人杀",
+    "appId": "com.tdd.app",
+    "mac": {
+      "target": ["dmg","zip"]
+    },
+    "win": {
+      "icon": "dst/boot/icon/icon.ico",
+      "target": ["nsis","zip"],
+      "artifactName": "${productName}.${ext}"
+    },
+    "directories": {
+      "output": "dist"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "runAfterFinish": true,
+      "installerIcon": "dst/boot/icon/icon.ico",
+      "uninstallerIcon": "dst/boot/icon/icon.ico"
+    }
+  },
   "scripts": {
     "start": "electron .",
-    "packagerWin64": "electron-packager . 屠龙 --win --out ../pack-pc/dist --platform=win32 --arch=x64 --app-version=0.18.1204 --overwrite --asar",
-    "packagerWin32": "electron-packager . 屠龙 --win --out ../pack-pc/dist --platform=win32 --arch=ia32 --app-version=0.18.1204 --overwrite --asar",
-    "packagerMAC": "electron-packager . 屠龙 --win --out ../pack-pc/dist --platform=darwin --arch=x64 --app-version=0.18.1204 --overwrite"
+    "build": "electron-builder --dir",
+    "dist": "electron-builder",
+    "packagerWin64": "electron-packager . 兽人杀 --win --out ../pack-pc/dist --platform=win32 --arch=x64 --app-version=0.18.1204 --icon=dst/boot/icon/icon.ico --overwrite --asar",
+    "packagerWin32": "electron-packager . 兽人杀 --win --out ../pack-pc/dist --platform=win32 --arch=ia32 --app-version=0.18.1204 --icon=dst/boot/icon/icon.ico --overwrite --asar",
+    "packagerMAC": "electron-packager . 兽人杀 --win --out ../pack-pc/dist --platform=darwin --arch=x64 --app-version=0.18.1204 --icon=dst/boot/icon/icon.ico --overwrite",
+    "packagerWin64Debug": "electron-packager . 兽人杀 --win --out ../pack-pc/dist --platform=win32 --arch=x64 --app-version=0.18.1204 --overwrite"
   },
   "repository": {
     "type": "git",
@@ -23,9 +51,10 @@
   },
   "homepage": "https://github.com/littleOverlord/pack-pc#readme",
   "devDependencies": {
-    "electron-packager": "^12.2.0"
+    "electron": "^3.0.10",
+    "electron-builder": "^20.39.0",
+    "electron-packager": "^12.2.0",
+    "electron-winstaller": "^3.0.4"
   },
-  "dependencies": {
-    "electron": "^3.0.10"
-  }
+  "dependencies": {}
 }
